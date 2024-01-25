@@ -1,0 +1,29 @@
+type Query{
+    bookById(id:ID):Book
+    books:[Book]
+}
+type Mutation{
+    deleteById(id:ID):Boolean
+    updateById(book:BookInput):Book
+}
+interface BookBase {
+    name: String
+    pageCount: Int
+    author: Author
+}
+input BookInput {
+    name: String
+    pageCount: Int
+}
+type Book implements BookBase {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
