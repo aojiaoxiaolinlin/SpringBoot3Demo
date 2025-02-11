@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mappers.UserMapper">
+
+    <resultMap id="userRole" type="com.lin.entities.User">
+        <result column="user_id" property="id"/>
+        <result column="real_name" property="realName"/>
+        <result column="username" property="username"/>
+        <collection property="roles" ofType="com.lin.entities.Role">
+            <result column="role_id" property="id"/>
+            <result column="role_name" property="roleName"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserRoleById" resultMap="userRole">
+        SELECT u.id as user_id,
+               u.real_name,
+               u.username,
+               r.id as role_id,
+               r.role_name
+        FROM user u
+                 join user_role ur on u.id = ur.user_id
+                 join role r on r.id = ur.role_id
+        where u.id = #{id}
+          and u.is_deleted = 0
+    </select>
+</mapper>
