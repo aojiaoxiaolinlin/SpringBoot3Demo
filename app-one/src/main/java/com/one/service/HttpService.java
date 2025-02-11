@@ -30,8 +30,11 @@ public class HttpService {
                                           .build();
         ParameterizedTypeReference<List<GithubUserInfo>> parameterizedTypeReference =
                 new ParameterizedTypeReference<>() {};
-        return restClient.get().uri("users").accept(MediaType.APPLICATION_JSON)
-                         .retrieve().body(parameterizedTypeReference);
+        return restClient.get()
+                         .uri("users")
+                         .accept(MediaType.APPLICATION_JSON)
+                         .retrieve()
+                         .body(parameterizedTypeReference);
     }
 
     public List<GithubUserInfo> getUserInfoByRestClientAndInterface() {

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GraphQLController {
     @QueryMapping
-    public User user(@Argument String id) throws InterruptedException {
-        // 模拟处理延时
-        Thread.sleep(300);
+    public User user(@Argument String id) {
         return new User(id, 20, "霖霖", "1589861957@qq.com");
     }
 }

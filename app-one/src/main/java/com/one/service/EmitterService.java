@@ -13,6 +13,12 @@ import java.util.concurrent.CompletableFuture;
 public class EmitterService {
 
     public void useEmitter(ResponseBodyEmitter responseBodyEmitter) {
+        responseBodyEmitter.onCompletion(()->{
+            log.info("结束");
+        });
+        responseBodyEmitter.onTimeout(()->{
+            log.info("超时");
+        });
         CompletableFuture.runAsync(() -> {
             for (int i = 0; i < 10; i++) {
                 try {
