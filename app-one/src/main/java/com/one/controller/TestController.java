@@ -69,7 +69,7 @@ public class TestController {
         return httpService.getUserInfo();
     }
 
-    // 通用异步响应 加了MediaType.TEXT_EVENT_STREAM_VALUE 也不是SSE,SseEmitter 是 其子类专用于SSE协议
+    // 通用异步响应 加了MediaType.TEXT_EVENT_STREAM_VALUE 也不是SSE,SseEmitter 是其子类专用于SSE协议
     @GetMapping(value = "responseEmitter")
     public ResponseBodyEmitter getUserInfoByEmitter() {
         ResponseBodyEmitter responseBodyEmitter = new ResponseBodyEmitter();

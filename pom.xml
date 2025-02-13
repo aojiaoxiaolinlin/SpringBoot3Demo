@@ -25,6 +25,7 @@
         <module>app-one</module>
         <module>app-vben</module>
         <module>common</module>
+        <module>app-security</module>
     </modules>
     <scm>
         <connection/>
