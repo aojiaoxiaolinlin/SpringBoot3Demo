@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @Description 自定义的UserDetailsService
  */
 @Service
-public class DbUserUserDetailsService implements UserDetailsService {
+public class DbUserDetailsService implements UserDetailsService {
     @Resource
     private PasswordEncoder passwordEncoder;
 

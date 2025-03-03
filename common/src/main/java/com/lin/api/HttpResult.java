@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
 public class HttpResult {
     private int code;
     private String message;

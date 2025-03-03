@@ -1,7 +1,7 @@
 package com.lin.filter;
 
 
-import com.lin.configuration.service.DbUserUserDetailsService;
+import com.lin.configuration.service.DbUserDetailsService;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Resource;
 import jakarta.servlet.FilterChain;
@@ -24,14 +24,14 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Resource
-    private DbUserUserDetailsService dbUserUserDetailsService;
+    private DbUserDetailsService dbUserDetailsService;
 
     @Override
     protected void doFilterInternal(@Nonnull HttpServletRequest request, @Nonnull HttpServletResponse response,
                                     @Nonnull FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
         if ("user".equals(authorization)) {
-            UserDetails userDetails = dbUserUserDetailsService.loadUserByUsername(authorization);
+            UserDetails userDetails = dbUserDetailsService.loadUserByUsername(authorization);
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
