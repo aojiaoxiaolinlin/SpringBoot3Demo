@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mappers.OwnerMapper">
+
+    <resultMap id="OwnerDevice" type="com.lin.entities.vo.OwnerVo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <association property="first" javaType="com.lin.entities.Device">
+            <id column="first_id" property="id"/>
+            <result column="first_name" property="name"/>
+        </association>
+        <association property="second" javaType="com.lin.entities.Device">
+            <id column="second_id" property="id"/>
+            <result column="second_name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="selectOwnerDevice" resultMap="OwnerDevice">
+        SELECT owner.id,
+               owner.name,
+               d1.id   AS first_id,
+               d1.name AS first_name,
+               d2.id   AS second_id,
+               d2.name AS second_name
+        FROM `owner`
+                 LEFT JOIN `device` AS `d1` ON `owner`.`first_id` = `d1`.`id`
+                 LEFT JOIN `device` AS `d2` ON `owner`.`second_id` = `d2`.`id`
+    </select>
+</mapper>

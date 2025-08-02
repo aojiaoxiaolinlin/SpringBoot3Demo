@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+
     @NotBlank(message = "请输入账号")
     private String account;
+
     @NotBlank(message = "请输入密码")
     private String password;
 }

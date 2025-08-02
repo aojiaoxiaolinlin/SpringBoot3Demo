@@ -1,0 +1,16 @@
+package com.lin.mappers;
+
+import org.apache.ibatis.annotations.Mapper;
+import com.mybatisflex.core.BaseMapper;
+import com.lin.entities.Device;
+
+/**
+ *  映射层。
+ *
+ * @author linlin
+ * @since 2025-07-01
+ */
+@Mapper
+public interface DeviceMapper extends BaseMapper<Device> {
+
+}

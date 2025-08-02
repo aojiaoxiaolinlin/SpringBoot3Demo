@@ -4,7 +4,8 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.stp.StpUtil;
 import com.lin.api.HttpResult;
 import com.lin.entities.User;
-import com.lin.entities.mappers.UserToUserVoMapper;
+import com.lin.entities.mappers.UserToVoMapper;
+import com.lin.entities.vo.UserVo;
 import com.lin.services.UserService;
 import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
@@ -27,18 +28,18 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private UserToUserVoMapper userToUserVoMapper;
+    private UserToVoMapper userToVoMapper;
 
 
     @GetMapping("info")
-    public HttpResult info() {
+    public HttpResult<UserVo> info() {
         String loginId = StpUtil.getLoginIdAsString();
         User user = userService.getOne(QueryWrapper.create()
                                                    .from(USER)
                                                    .join(USER_ROLE).on(USER.ID.eq(USER_ROLE.USER_ID))
                                                    .join(ROLE).on(ROLE.ID.eq(USER_ROLE.ROLE_ID))
                                                    .where(USER.ID.eq(loginId)));
-        return HttpResult.success(userToUserVoMapper.convertVo(user));
+        return HttpResult.success(userToVoMapper.toVo(user));
     }
 
 }

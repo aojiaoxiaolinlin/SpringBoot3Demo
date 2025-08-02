@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.lin</groupId>
     <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <name>demo</name>
     <description>demo</description>
@@ -25,14 +25,12 @@
         <module>app-one</module>
         <module>app-vben</module>
         <module>common</module>
+        <module>app-sys</module>
+        <module>web-base</module>
+        <module>app-study</module>
     </modules>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
     <properties>
+        <revision>0.0.1</revision>
         <java.version>21</java.version>
         <hutool.version>5.8.34</hutool.version>
         <common-lang3.version>3.17.0</common-lang3.version>
@@ -41,6 +39,7 @@
         <mybatis-flex.version>1.10.5</mybatis-flex.version>
         <mybatis-flex-code-generater.version>1.10.5</mybatis-flex-code-generater.version>
         <HikariCP.version>6.2.1</HikariCP.version>
+        <mybatis-plus.version>3.5.12</mybatis-plus.version>
         <ulid-creator.version>5.2.3</ulid-creator.version>
         <org.mapstruct.version>1.6.2</org.mapstruct.version>
         <mapstruct-plus.version>1.4.6</mapstruct-plus.version>
@@ -78,6 +77,18 @@
                 <groupId>com.zaxxer</groupId>
                 <artifactId>HikariCP</artifactId>
                 <version>${HikariCP.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>
@@ -137,6 +148,26 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
+            </dependency>
+
+
+            <!--本工程自定义-->
+            <dependency>
+                <groupId>com.lin</groupId>
+                <artifactId>common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lin</groupId>
+                <artifactId>web-base</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lin</groupId>
+                <artifactId>app-sys</artifactId>
+                <version>${revision}</version>
             </dependency>
 
         </dependencies>

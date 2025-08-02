@@ -21,12 +21,13 @@ import static com.lin.entities.table.UserTableDef.USER;
 @RestController("auth")
 public class LoginController {
 
+    private static final String TOKEN_KEY_NAME = "accessToken";
+
     @Resource
     private UserService userService;
 
     @Resource
     private SaTokenConfig saTokenConfig;
-
 
     /**
      * 用户登录接口
@@ -36,9 +37,9 @@ public class LoginController {
      * @return 用户信息
      */
     @PostMapping("auth/login")
-    public HttpResult login(@Valid @RequestBody UserDto userDTo) {
+    public HttpResult<JSONObject> login(@Valid @RequestBody UserDto userDTo) {
         // 已经登录的只重置token过期时间
-        if (StpUtil.isLogin()) {
+        if (StpUtil.isLogin() && StpUtil.getTokenValue().equals(userDTo.getAccount())) {
             StpUtil.renewTimeout(saTokenConfig.getTimeout());
         } else {
             User user = userService.getOne(QueryWrapper.create()
@@ -49,6 +50,6 @@ public class LoginController {
             }
             StpUtil.login(user.getId());
         }
-        return HttpResult.success(JSONObject.of("accessToken", StpUtil.getTokenValue()));
+        return HttpResult.success(JSONObject.of(TOKEN_KEY_NAME, StpUtil.getTokenValue()));
     }
 }

@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.lin</groupId>
         <artifactId>demo</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>app-vben</artifactId>
@@ -41,8 +41,6 @@
         <dependency>
             <groupId>com.lin</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -59,13 +57,6 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-        <!--    <groupId>com.mybatis-flex</groupId>-->
-        <!--    <artifactId>mybatis-flex-processor</artifactId>-->
-        <!--    <scope>provided</scope>-->
-        <!--</dependency>-->
-
 
         <dependency>
             <groupId>com.mybatis-flex</groupId>

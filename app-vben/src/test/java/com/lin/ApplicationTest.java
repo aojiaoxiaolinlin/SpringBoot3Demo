@@ -9,6 +9,7 @@ import com.lin.services.UserRoleService;
 import com.lin.services.UserService;
 import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -46,8 +47,7 @@ public class ApplicationTest {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.where(USER.ACCOUNT.eq("vben"))
                     .and(USER.PASSWORD.eq("123456"));
-        User user = userService.getOne(queryWrapper);
-        System.out.println(user);
+        userService.getObjOpt(queryWrapper).orElseThrow();
     }
 
     @Resource
@@ -56,18 +56,20 @@ public class ApplicationTest {
     @Test
     void userQuery2() {
         User user = userMapper.selectUserRoleById("01JKDG9E74MPN3FGZF5GZY7CH3");
-        System.out.println(user);
+        Assertions.assertNotNull(user);
     }
 
     @Test
     void userQuery3() {
         QueryWrapper queryWrapper = QueryWrapper.create()
+                                                .select(USER.ID, USER.ALL_COLUMNS)
+                                                .select(ROLE.ID, ROLE.ALL_COLUMNS)
                                                 .from(USER)
                                                 .join(USER_ROLE).on(USER.ID.eq(USER_ROLE.USER_ID))
                                                 .join(ROLE).on(ROLE.ID.eq(USER_ROLE.ROLE_ID))
                                                 .where(USER.ID.eq("01JKDG9E74MPN3FGZF5GZY7CH3"));
         User user = userService.getOne(queryWrapper);
-        System.out.println(user);
+        Assertions.assertNotNull(user);
     }
 
     @Resource
