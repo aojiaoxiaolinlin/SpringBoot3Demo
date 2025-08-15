@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class WebGraphqlInterceptor implements WebGraphQlInterceptor {
     @Override
-    public Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request, Chain chain) {
+    public Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request,Chain chain) {
         log.info("WebGraphQlInterceptor start:{}", request.getUri());
         return chain.next(request);
     }

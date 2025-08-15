@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2025-06-29
  */
 @RestController
-@RequestMapping("/userMoney")
+@RequestMapping("userMoney")
 public class UserMoneyController {
 
     @Resource
